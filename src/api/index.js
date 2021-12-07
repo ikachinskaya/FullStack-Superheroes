@@ -5,7 +5,9 @@ const httpClient = axios.create({
 });
 
 export const createHero = async (data) => {
-  return await httpClient.post("/superheroes", data);
+  return await httpClient.post("/superheroes", data, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
 };
 
 export const getHeroes = async (data) => {
