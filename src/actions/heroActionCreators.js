@@ -1,5 +1,9 @@
 import ACTION_TYPES from "./actionTypes";
 
+/*
+ создаем объект-actions
+ payload - полезная нагрузка
+*/
 export const createHeroRequest = (values) => {
   return {
     type: ACTION_TYPES.CREATE_HERO_REQUEST,

@@ -3,6 +3,7 @@ import { Formik, Form, Field, FieldArray } from "formik";
 import { useDispatch } from "react-redux";
 import * as HeroActionCreators from "../../../actions/heroActionCreators";
 
+//начальные значения формы
 const initialValues = {
   nickname: "",
   realName: "",
@@ -13,10 +14,18 @@ const initialValues = {
 };
 
 const CreateHeroForm = (props) => {
+  /*
+  хук. возвращает ссылку на dispatch функцию из хранилища
+  для возможности отправлять любые actions
+  */
   const dispatch = useDispatch();
 
+  //values - все значения, которые есть в форме
+  //formikBag - объект со вспомогательными функциями
   const submitHandler = (values, formikBag) => {
     console.log(values);
+
+    //создаем HTML-форму
     const data = new FormData();
     data.append("nickname", values.nickname);
     data.append("realName", values.realName);
@@ -29,11 +38,17 @@ const CreateHeroForm = (props) => {
       data.append("images", image);
     });
 
+    //создаем действий
     const action = HeroActionCreators.createHeroRequest(data);
+
+    //обновляем store
     dispatch(action);
+
+    //очищаем форму
     formikBag.resetForm();
   };
 
+  //возвращаем из формы Formik, т.к. он содержит логику, которую раздает находящимся внутри элементам
   return (
     <Formik initialValues={initialValues} onSubmit={submitHandler}>
       {({ values, setFieldValue }) => {

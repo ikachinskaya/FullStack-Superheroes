@@ -1,3 +1,7 @@
+/*
+объект с действиями
+на каждый запрос 
+*/
 const ACTION_TYPES = {
   CREATE_HERO_REQUEST: "CREATE_HERO_REQUEST",
   CREATE_HERO_SUCCESS: "CREATE_HERO_SUCCESS",
